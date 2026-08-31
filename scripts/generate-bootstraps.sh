@@ -495,7 +495,7 @@ for package_arch in "${TERMUX_ARCHITECTURES[@]}"; do
 		pull_package "$add_pkg"
 	done
 	unset add_pkg
-
+    mkdir -p "${BOOTSTRAP_ROOTFS}/${TERMUX_PREFIX}/etc/profile.d"
 	# Add termux bootstrap second stage files
 	add_termux_bootstrap_second_stage_files "$package_arch"
 
