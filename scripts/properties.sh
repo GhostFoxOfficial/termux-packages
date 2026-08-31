@@ -402,7 +402,7 @@ TERMUX__UNAME="${TERMUX__NAME^^}"
 #
 # Default value: `termux`
 ##
-TERMUX__INTERNAL_NAME="termux"
+TERMUX__INTERNAL_NAME="selinux"
 
 ##
 # The regex to validate `TERMUX__INTERNAL_NAME`.
@@ -436,7 +436,7 @@ TERMUX__INTERNAL_NAME___MAX_LEN=7
 #
 # Default value: `termux`
 ##
-TERMUX__REPOS_HOST_ORG_NAME="termux"
+TERMUX__REPOS_HOST_ORG_NAME="selinux"
 
 ##
 # Termux repositories host organization url.
@@ -464,7 +464,7 @@ TERMUX__REPOS_HOST_ORG_URL="https://github.com/$TERMUX__REPOS_HOST_ORG_NAME"
 #
 # Default value: `com.termux`
 ##
-TERMUX_APP__PACKAGE_NAME="com.termux"
+TERMUX_APP__PACKAGE_NAME="com.selinux"
 TERMUX_APP_PACKAGE="$TERMUX_APP__PACKAGE_NAME" # Deprecated alternative variable for `TERMUX_APP__PACKAGE_NAME`
 
 __termux_build_props__add_variables_validator_actions "TERMUX_APP__PACKAGE_NAME" "app_package_name"
@@ -845,7 +845,7 @@ TERMUX_ANDROID_HOME="$TERMUX__HOME" # Deprecated alternative variable for `TERMU
 #
 # Default value: `/data/data/com.termux/files/home/.termux`
 ##
-TERMUX__LEGACY_PROJECT_USER_CONFIG_DIR="$TERMUX__HOME/.termux"
+TERMUX__LEGACY_PROJECT_USER_CONFIG_DIR="$TERMUX__HOME/.selinux"
 
 
 
@@ -1515,7 +1515,7 @@ TERMUX__UNIX_PATH_MAX=108
 #
 # Default value: `TERMUX_`
 ##
-TERMUX_ENV__S_ROOT="TERMUX_"
+TERMUX_ENV__S_ROOT="SELINUX_"
 
 
 
@@ -1775,7 +1775,7 @@ TERMUX_ENV__S_TERMUX_AM_SOCKET="${TERMUX_ENV__S_ROOT}${TERMUX_ENV__SS_TERMUX_AM_
 #
 # Default value: `termux-packages`
 ##
-TERMUX_PKGS__REPO_NAME="termux-packages"
+TERMUX_PKGS__REPO_NAME="selinux-packages"
 
 ##
 # Termux packages repo url.
@@ -1816,7 +1816,7 @@ TERMUX_APP__LNAME="${TERMUX_APP__NAME,,}"
 # Validation regex: `TERMUX__APPS_APP_IDENTIFIER_REGEX`
 # Max length: `TERMUX__APPS_APP_IDENTIFIER___MAX_LEN`
 ##
-TERMUX_APP__APP_IDENTIFIER="termux"
+TERMUX_APP__APP_IDENTIFIER="selinux"
 
 
 
@@ -1825,7 +1825,7 @@ TERMUX_APP__APP_IDENTIFIER="termux"
 #
 # Default value: `termux-app`
 ##
-TERMUX_APP__REPO_NAME="termux-app"
+TERMUX_APP__REPO_NAME="selinux-app"
 
 ##
 # Termux app repo url.
@@ -1966,7 +1966,7 @@ __termux_build_props__add_variables_validator_actions "TERMUX_APP__AM_SOCKET__SE
 #
 # Default value: `com.termux.api`
 ##
-TERMUX_API_APP__PACKAGE_NAME="com.termux.api"
+TERMUX_API_APP__PACKAGE_NAME="com.selinux.api"
 
 __termux_build_props__add_variables_validator_actions "TERMUX_API_APP__PACKAGE_NAME" "app_package_name"
 
@@ -2180,13 +2180,13 @@ TERMUX_AM_APP__AM_CLASS__CLASS_NAME="$TERMUX_AM_APP__NAMESPACE.Am"
 # and are compiled locally.
 # FIXME: Checking for all variables will be added later in repo
 # changes pull, currently only `TERMUX_REPO_APP__PACKAGE_NAME` is checked.
-TERMUX_REPO_APP__PACKAGE_NAME="com.termux"
-TERMUX_REPO_APP__DATA_DIR="/data/data/com.termux"
-TERMUX_REPO__CORE_DIR="/data/data/com.termux/termux/core"
-TERMUX_REPO__APPS_DIR="/data/data/com.termux/termux/app"
-TERMUX_REPO__ROOTFS="/data/data/com.termux/files"
-TERMUX_REPO__HOME="/data/data/com.termux/files/home"
-TERMUX_REPO__PREFIX="/data/data/com.termux/files/usr"
+TERMUX_REPO_APP__PACKAGE_NAME="com.selinux"
+TERMUX_REPO_APP__DATA_DIR="/data/data/com.selinux"
+TERMUX_REPO__CORE_DIR="/data/data/com.selinux/selinux/core"
+TERMUX_REPO__APPS_DIR="/data/data/com.selinux/selinux/app"
+TERMUX_REPO__ROOTFS="/data/data/com.selinux/files"
+TERMUX_REPO__HOME="/data/data/com.selinux/files/home"
+TERMUX_REPO__PREFIX="/data/data/com.selinux/files/usr"
 
 
 
@@ -2231,14 +2231,14 @@ TERMUX_CLEANUP_BUILT_PACKAGES_THRESHOLD="$(( 5 * 1024 ** 3 ))" # 5 GiB
 __termux_build_props__add_variables_validator_actions "TERMUX_CLEANUP_BUILT_PACKAGES_THRESHOLD" "unsigned_int"
 
 # Path to CGCT tools
-CGCT_DEFAULT_PREFIX="/data/data/com.termux/files/usr/glibc"
+CGCT_DEFAULT_PREFIX="/data/data/com.selinux/files/usr/glibc"
 __termux_build_props__add_variables_validator_actions "CGCT_DEFAULT_PREFIX" "safe_absolute_path invalid_termux_prefix_paths"
 
-export CGCT_DIR="/data/data/com.termux/cgct"
+export CGCT_DIR="/data/data/com.selinux/cgct"
 __termux_build_props__add_variables_validator_actions "CGCT_DIR" "safe_absolute_path invalid_termux_prefix_paths"
 
 # Allow to override setup.
-for f in "${HOME}/.config/termux/termuxrc.sh" "${HOME}/.termux/termuxrc.sh" "${HOME}/.termuxrc"; do
+for f in "${HOME}/.config/selinux/termuxrc.sh" "${HOME}/.selinux/termuxrc.sh" "${HOME}/.termuxrc"; do
     if [ -f "$f" ]; then
         echo "Using builder configuration from '$f'..."
         # shellcheck source=/dev/null
@@ -2292,7 +2292,7 @@ or \`/mnt/expand/<volume_uuid>/user/<user_id>/<package_name>\` formats." 1>&2
 
     for variable_name in "${__TERMUX_BUILD_PROPS__VARIABLES_VALIDATOR_ACTIONS_VARIABLE_NAMES[@]}"; do
         if [[ ! "$variable_name" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; then
-            echo "The variable_name '$variable_name' in Termux properties variables validator actions is not a valid shell variable name." 1>&2
+            echo "The variable_name '$variable_name' in SELinux properties variables validator actions is not a valid shell variable name." 1>&2
             return 1
         fi
 
@@ -2308,14 +2308,14 @@ or \`/mnt/expand/<volume_uuid>/user/<user_id>/<package_name>\` formats." 1>&2
 
             # If not defined.
             if [[ "$is_value_defined" = "0" ]]; then
-                echo "The variable_name '$variable_name' in Termux properties variables validator actions is not defined." 1>&2
+                echo "The variable_name '$variable_name' in SELinux properties variables validator actions is not defined." 1>&2
                 return 1
             fi
 
             # If defined but unset.
             [[ " ${validator_actions[*]} " == *" allow_unset_value "* ]] && continue
 
-            echo "The Termux properties variable value for variable name '$variable_name' is not set." 1>&2
+            echo "The SELinux properties variable value for variable name '$variable_name' is not set." 1>&2
             return 1
         fi
 
